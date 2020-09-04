@@ -1,9 +1,11 @@
 import React from 'react'
-import {View, Text, FlatList, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet} from 'react-native'
 import {NOTES} from 'notesApp/data/dummy'
 
 const NoteScreen = (props) => {
-  const noteData = NOTES[0]
+  const noteId = props.navigation.getParam('noteId')
+  const noteData = NOTES.find((nt) => nt.id === noteId)
+
   return (
     <View style={styles.note}>
       <Text>{noteData.title}</Text>
@@ -17,7 +19,7 @@ const NoteScreen = (props) => {
 
 NoteScreen.navigationOptions = (navData) => {
   return {
-    headerTitle: 'Note Data',
+    headerTitle: navData.navigation.getParam('noteTitle'),
   }
 }
 
