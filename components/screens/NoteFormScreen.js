@@ -2,12 +2,13 @@ import React, {useState, useEffect, useCallback, useReducer} from 'react'
 import {
   View,
   Text,
-  FlatList,
+  Button,
   StyleSheet,
   KeyboardAvoidingView,
 } from 'react-native'
 import {ScrollView} from 'react-native-gesture-handler'
 import Input from 'notesApp/components/ui/Input'
+import {colors} from 'notesApp/constants/colors'
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE'
 
@@ -53,6 +54,18 @@ const NoteFormScreen = (props) => {
     formIsValid: false,
   })
 
+  const inputChangeHandler = useCallback(
+    (inputIdentifier, inputValue, inputValidity) => {
+      dispatchFormState({
+        type: FORM_INPUT_UPDATE,
+        value: inputValue,
+        isValid: inputValidity,
+        input: inputIdentifier,
+      })
+    },
+    [dispatchFormState],
+  )
+
   const submitHandler = () => {
     if (!formState.formIsValid) {
       Alert.alert('Wrong input!', 'Please check the errors in the form.', [
@@ -63,9 +76,9 @@ const NoteFormScreen = (props) => {
 
     // todo
     addNote({
-      title: inputValues.title,
-      text: inputValues.text,
-      color: inputValues.color,
+      title: formState.inputValues.title,
+      text: formState.inputValues.text,
+      color: formState.inputValues.color,
       id: Date.now().toString(),
       date: Date.now(),
     })
@@ -88,6 +101,7 @@ const NoteFormScreen = (props) => {
             keyboardType="default"
             autoCorrect
             initialValue=""
+            onInputChange={inputChangeHandler}
           />
           <Input
             id="text"
@@ -97,6 +111,7 @@ const NoteFormScreen = (props) => {
             keyboardType="default"
             autoCorrect
             initialValue=""
+            onInputChange={inputChangeHandler}
           />
           <Input
             id="color"
@@ -105,7 +120,15 @@ const NoteFormScreen = (props) => {
             required
             keyboardType="default"
             initialValue=""
+            onInputChange={inputChangeHandler}
           />
+          <View style={styles.submitBtn}>
+            <Button
+              title="Add note"
+              onPress={submitHandler}
+              color={colors.primary}
+            />
+          </View>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -119,6 +142,9 @@ NoteFormScreen.navigationOptions = (navData) => ({
 const styles = StyleSheet.create({
   form: {
     margin: 20,
+  },
+  submitBtn: {
+    marginTop: 30,
   },
 })
 
