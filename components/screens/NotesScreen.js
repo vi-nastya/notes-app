@@ -2,6 +2,7 @@ import React from 'react'
 import {View, Text, FlatList, StyleSheet} from 'react-native'
 import {NOTES} from '../../data/dummy'
 import {TouchableOpacity} from 'react-native-gesture-handler'
+import {NOTE_COLORS} from '../../constants/colors'
 
 const NotesScreen = (props) => {
   return (
@@ -13,7 +14,10 @@ const NotesScreen = (props) => {
           }}>
           <View
             key={`note-${index}`}
-            style={{...styles.noteCard, ...{backgroundColor: note.color}}}>
+            style={{
+              ...styles.noteCard,
+              ...{backgroundColor: NOTE_COLORS[note.color]},
+            }}>
             <Text>{note.title}</Text>
           </View>
         </TouchableOpacity>
@@ -30,8 +34,6 @@ const styles = StyleSheet.create({
   noteCard: {
     width: '100%',
     padding: 20,
-    borderColor: 'black',
-    borderWidth: 1,
   },
 })
 
