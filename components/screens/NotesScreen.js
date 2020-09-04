@@ -1,11 +1,13 @@
 import React from 'react'
 import {View, Text, Button, FlatList, StyleSheet} from 'react-native'
-import {NOTES} from 'notesApp/data/dummy'
+import {useSelector, useDispatch} from 'react-redux'
 import {TouchableOpacity} from 'react-native-gesture-handler'
 import {NOTE_COLORS} from 'notesApp/constants/colors'
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 
 const NotesScreen = (props) => {
+  const notes = useSelector((state) => state.notes.allNotes)
+
   const selectItemHandler = (id, title) => {
     props.navigation.navigate('Note', {
       noteId: id,
@@ -14,7 +16,7 @@ const NotesScreen = (props) => {
   }
   return (
     <FlatList
-      data={NOTES}
+      data={notes}
       renderItem={(itemData) => (
         <TouchableOpacity
           onPress={() =>
