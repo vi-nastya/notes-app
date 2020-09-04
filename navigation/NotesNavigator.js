@@ -3,6 +3,7 @@ import {createAppContainer} from 'react-navigation'
 import {Platform} from 'react-native'
 import NotesScreen from 'notesApp/components/screens/NotesScreen'
 import NoteScreen from 'notesApp/components/screens/NoteScreen'
+import NoteFormScreen from 'notesApp/components/screens/NoteFormScreen'
 import {colors} from 'notesApp/constants/colors'
 
 const defaultNavOptions = {
@@ -22,6 +23,7 @@ const NotesNavigator = createStackNavigator(
   {
     NotesList: NotesScreen,
     Note: NoteScreen,
+    NoteForm: NoteFormScreen,
   },
   {defaultNavigationOptions: defaultNavOptions},
 )

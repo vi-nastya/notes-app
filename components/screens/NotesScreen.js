@@ -2,8 +2,8 @@ import React from 'react'
 import {View, Text, FlatList, StyleSheet} from 'react-native'
 import {NOTES} from 'notesApp/data/dummy'
 import {TouchableOpacity} from 'react-native-gesture-handler'
-//import {NOTE_COLORS} from '../../constants/colors'
 import {NOTE_COLORS} from 'notesApp/constants/colors'
+import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 
 const NotesScreen = (props) => {
   const selectItemHandler = (id, title) => {
@@ -36,6 +36,15 @@ const NotesScreen = (props) => {
 NotesScreen.navigationOptions = (navData) => {
   return {
     headerTitle: 'All Notes',
+    headerRight: () => (
+      <HeaderButtons
+        HeaderButtonComponent={() => <View style={styles.headerBtn} />}>
+        <Item
+          title="Add"
+          onPress={() => navData.navigation.navigate('NoteForm')}
+        />
+      </HeaderButtons>
+    ),
   }
 }
 
@@ -47,6 +56,11 @@ const styles = StyleSheet.create({
   noteCard: {
     width: '100%',
     padding: 20,
+  },
+  headerBtn: {
+    width: 20,
+    height: 20,
+    backgroundColor: 'white',
   },
 })
 
