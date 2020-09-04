@@ -16,7 +16,7 @@ import {
   StatusBar,
 } from 'react-native'
 import 'react-native-gesture-handler'
-import NavigationContainer from './navigation/NotesNavigator'
+import NavigationContainer from 'notesApp/navigation/NotesNavigator'
 
 const App = () => {
   return <NavigationContainer />

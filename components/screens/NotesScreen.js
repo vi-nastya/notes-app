@@ -1,8 +1,9 @@
 import React from 'react'
 import {View, Text, FlatList, StyleSheet} from 'react-native'
-import {NOTES} from '../../data/dummy'
+import {NOTES} from 'notesApp/data/dummy'
 import {TouchableOpacity} from 'react-native-gesture-handler'
-import {NOTE_COLORS} from '../../constants/colors'
+//import {NOTE_COLORS} from '../../constants/colors'
+import {NOTE_COLORS} from 'notesApp/constants/colors'
 
 const NotesScreen = (props) => {
   return (

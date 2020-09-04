@@ -1,9 +1,9 @@
 import {createStackNavigator} from 'react-navigation-stack'
 import {createAppContainer} from 'react-navigation'
 import {Platform} from 'react-native'
-import NotesScreen from '../components/screens/NotesScreen'
-import NoteScreen from '../components/screens/NoteScreen'
-import {colors} from '../constants/colors'
+import NotesScreen from 'notesApp/components/screens/NotesScreen'
+import NoteScreen from 'notesApp/components/screens/NoteScreen'
+import {colors} from 'notesApp/constants/colors'
 
 const defaultNavOptions = {
   headerStyle: {
