@@ -6,13 +6,14 @@ import {TouchableOpacity} from 'react-native-gesture-handler'
 const NotesScreen = (props) => {
   return (
     <View style={styles.notesList}>
-      <Text>Notes list</Text>
       {NOTES.map((note, index) => (
         <TouchableOpacity
           onPress={() => {
             props.navigation.navigate('Note')
           }}>
-          <View key={`note-${index}`} style={styles.noteCard}>
+          <View
+            key={`note-${index}`}
+            style={{...styles.noteCard, ...{backgroundColor: note.color}}}>
             <Text>{note.title}</Text>
           </View>
         </TouchableOpacity>
