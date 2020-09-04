@@ -15,6 +15,12 @@ const NoteScreen = (props) => {
   )
 }
 
+NoteScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: 'Note Data',
+  }
+}
+
 const styles = StyleSheet.create({
   note: {
     flex: 1,

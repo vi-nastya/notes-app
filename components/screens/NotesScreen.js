@@ -6,25 +6,37 @@ import {TouchableOpacity} from 'react-native-gesture-handler'
 import {NOTE_COLORS} from 'notesApp/constants/colors'
 
 const NotesScreen = (props) => {
+  const selectItemHandler = (id, title) => {
+    props.navigation.navigate('Note', {
+      noteId: id,
+      noteTitle: title,
+    })
+  }
   return (
-    <View style={styles.notesList}>
-      {NOTES.map((note, index) => (
+    <FlatList
+      data={NOTES}
+      renderItem={(itemData) => (
         <TouchableOpacity
-          onPress={() => {
-            props.navigation.navigate('Note')
-          }}>
+          onPress={() =>
+            selectItemHandler(itemData.item.id, itemData.item.title)
+          }>
           <View
-            key={`note-${index}`}
             style={{
               ...styles.noteCard,
-              ...{backgroundColor: NOTE_COLORS[note.color]},
+              ...{backgroundColor: NOTE_COLORS[itemData.item.color]},
             }}>
-            <Text>{note.title}</Text>
+            <Text>{itemData.item.title}</Text>
           </View>
         </TouchableOpacity>
-      ))}
-    </View>
+      )}
+    />
   )
+}
+
+NotesScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: 'All Notes',
+  }
 }
 
 const styles = StyleSheet.create({
